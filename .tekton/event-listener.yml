@@ -44,7 +44,10 @@ metadata:
   name: github-push
 spec:
   triggers:
-    - binding:
+      interceptors:
+      - github:
+        eventTypes: ["push"]
+      bindings:
         name: binding-github-push
       template:
         name: template-github-push

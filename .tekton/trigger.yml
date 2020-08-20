@@ -233,47 +233,12 @@ params:
   description: Name of the Deployment and the container name in the Deployment.
 spec:
   resourcetemplates:
-    # - apiVersion: v1
-      # kind: Secret
-      # metadata:
-      #   name: docker-creds
-      #   annotations:
-      #     tekton.dev/docker-0: https://hub.docker.com
-      # type: kubernetes.io/basic-auth
-      # stringData:
-      #   username: 1oraldsense9
-      #   password: sacjim-nufdI4-dyxfyq
-      # kind: Secret
-      # metadata:
-      #   name: docker-creds
-      #   annotations:
-      #     tekton.dev/docker-0: https://hub.docker.com
-      # data:
-      #   .dockercfg: eyAJImF1dGhzIjogeyAJCSJodHRwczovL2luZGV4LmRvY2tlci5pby92Mi8iOiB7IAkJCSJhdXRoIjogIk1RQnZBSElBWVFCc0FHUUFjd0JsQUc0QWN3QmxBRGtBT2dCekFHRUFZd0JxQUdrQWJRQXRBRzRBZFFCbUFHUUFTUUEwQUMwQVpBQjVBSGdBWmdCNUFIRUEiIAkJfSAJfSB9
-      # type: kubernetes.io/dockercfg
-      # kind: Secret
-      # metadata:
-      #   name: docker-creds
-      # data:
-      #   .dockerconfigjson: eyAJImF1dGhzIjogeyAJCSJodHRwczovL2luZGV4LmRvY2tlci5pby92Mi8iOiB7IAkJCSJhdXRoIjogIk1RQnZBSElBWVFCc0FHUUFjd0JsQUc0QWN3QmxBRGtBT2dCekFHRUFZd0JxQUdrQWJRQXRBRzRBZFFCbUFHUUFTUUEwQUMwQVpBQjVBSGdBWmdCNUFIRUEiIAkJfSAJfSB9
-      # type: kubernetes.io/dockerconfigjson
     - apiVersion: v1
       kind: ServiceAccount
       metadata:
         name: secret-service-account
       secrets:
         - name: docker-creds
-    # - apiVersion: v1
-    #   kind: PersistentVolumeClaim
-    #   metadata:
-    #     name: pipelinerun-$(uid)-pvc
-    #   spec:
-    #     resources:
-    #       requests:
-    #         storage:  1Gi
-    #     volumeMode: Filesystem
-    #     accessModes:
-    #       - ReadWriteOnce
     - apiVersion: tekton.dev/v1beta1
       kind: PipelineRun
       metadata:
@@ -282,17 +247,6 @@ spec:
         serviceAccountName: secret-service-account
         pipelineRef:
             name: github-push--pipeline
-        # params:
-        #   - name: username
-        #     value: $(params.username)
-        #   - name: password
-        #     value: $(params.password)
-        # workspaces:
-        #   - name: pipeline-workspace
-        #     persistentVolumeClaim:
-        #       claimName: pipelinerun-$(uid)-pvc
-#
-
 ---
 
 apiVersion: v1
@@ -318,8 +272,6 @@ rules:
 - apiGroups: ["tekton.dev"]
   resources: ["pipelineruns"]
   verbs: ["create"]
-
-
 
 ---
 
