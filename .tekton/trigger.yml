@@ -292,3 +292,30 @@ spec:
         #     persistentVolumeClaim:
         #       claimName: pipelinerun-$(uid)-pvc
 #
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: github-pull
+
+---
+
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: github-pull
+rules:
+# Permissions for every EventListener deployment to function
+- apiGroups: ["triggers.tekton.dev"]
+  resources: ["eventlisteners", "triggerbindings", "triggertemplates"]
+  verbs: ["get"]
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["get", "list", "watch"]
+# Permissions to create resources in associated TriggerTemplates
+- apiGroups: ["tekton.dev"]
+  resources: ["pipelineruns"]
+  verbs: ["create"]
+
