@@ -72,16 +72,16 @@ rules:
 
 ---
 
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: github-push
-subjects:
-- kind: ServiceAccount
-  name: github-push
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: github-push
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: RoleBinding
+# metadata:
+#   name: github-push
+# subjects:
+# - kind: ServiceAccount
+#   name: github-push
+# roleRef:
+#   apiGroup: rbac.authorization.k8s.io
+#   kind: Role
+#   name: github-push
 
   #
