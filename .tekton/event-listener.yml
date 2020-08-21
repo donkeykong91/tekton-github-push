@@ -47,10 +47,13 @@ spec:
     - name: github-listener
       interceptors:
         - github:
-          eventTypes:
-            - push
+          eventTypes: ["push"]
       bindings:
         - ref: binding-github-push
+          spec:
+            params:
+              - name: message
+                value: Hello from the Triggers EventListener!
       template:
         name: template-github-push
 
