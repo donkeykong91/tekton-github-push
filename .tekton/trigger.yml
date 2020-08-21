@@ -18,7 +18,7 @@ spec:
 apiVersion: tekton.dev/v1beta1
 kind: TriggerTemplate
 metadata:
-  name: github-push-binding
+  name: github-push-template
 params:
 - name: URL
   description: The repository url to build and deploy.
@@ -43,7 +43,7 @@ spec:
       spec:
         serviceAccountName: secret-service-account
         pipelineRef:
-            name: github-push--pipeline
+            name: github-push-pipeline
 ---
 
 apiVersion: v1
