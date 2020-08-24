@@ -5,9 +5,9 @@ metadata:
 spec:
   params:
   - name: URL
-    value: $(body.repository.clone_url)
+    value: $(event.repository.clone_url)
   - name: REVISION
-    value: $(body.pull_request.head.sha)
+    value: $(event.pull_request.head.sha)
   - name: NAMESPACE
     value: testapp
   - name: DEPLOYMENT
@@ -56,7 +56,7 @@ metadata:
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: tekton-triggers-example-minimal
+  name: github-push
 rules:
 # Permissions for every EventListener deployment to function
 - apiGroups: ["triggers.tekton.dev"]
